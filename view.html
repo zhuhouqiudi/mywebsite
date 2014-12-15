@@ -1,0 +1,70 @@
+<a!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <body>
+    <div class="wrapper">
+    <div class="intro">
+	    <h2>{{question.questionname}}</h2>
+      {% if username == question.ownername %}
+          <a href="/editquestion/{{question.key().id()}} "><input type='button' value="Edit"></a>
+
+      {% endif %}
+    </div>
+  <form action="/vote/questionvote/{{questionkey}}" method="get">
+  <a href=" "><input type='submit' name="questionvote" value="Up"></a >
+  <br>
+  {{question.questionvote}}
+  <br>
+  <a href=" "><input type='submit' name="questionvote" value="Down"></a >
+    <div class="body">
+      <p>{{question.contentFormat()|safe}}</p>
+
+    </div>
+  </form>
+  <div class="menu">
+     <p>Tags: {{question.tagstr}}</p>
+
+  </div>
+
+
+  {% for tag in question.taginquestionlist %}  
+      <div class="menu">
+      <h3>{{tag}}</a></h3>
+    {% endfor %}
+  
+
+  {% for answer in answers %}
+  <form action="/vote/answervote/{{answer.key()}}" method="get">
+  <div class="block">
+    <div>{{answer.contentFormat()|safe}}</div>
+    {% if username == answer.ownername %}
+          <a href="/editanswer/{{answer.key()}} "><input type='button' value="Edit"></a>
+    {% endif %}
+    <div>Creatd by: {{answer.created_time.strftime("%d %b %Y %H:%M:%S EST")}}</div>  
+    <div>Last modified by: {{answer.modifytimeinEST().strftime("%d %b %Y %H:%M:%S EST")}}</div>
+    <div>by {{answer.ownername}} </div>
+    <a href=" "><input type='submit' name="answervote" value="Up"></a >
+    <br>
+    {{answer.answervote}}
+    <br>
+    <a href=" "><input type='submit' name="answervote" value="Down"></a >
+    <br><br>
+  </div>
+  </form>
+  {% endfor %}
+  
+
+  <form action="/view/{{questionkey}}" method="post">
+    <h3>Your Answer</h3>
+    <div><textarea name="content" rows="10" cols="60"></textarea></div>
+    <div><input type="submit" value="Post Your Answer"></div>
+    <input type="hidden" name="ownername" value={{username}}>
+    <input type="hidden" name="ownerid" value={{userid}}>
+    <br><br>
+    <a href="/"><input type='button' value="Main Page"></a >
+  </form> 
+
+  </body>
+</html>
+{% endautoescape %}
+

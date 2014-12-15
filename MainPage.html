@@ -1,0 +1,51 @@
+{% block contents %}
+    <div class="wrapper">
+     <div class="intro">
+      <h3 id="page-title">
+	<p>Questions List</p>
+      </h3>
+    </div>
+
+    <div class="menu">
+    <p>
+     <a href = "{{ url|safe }}">{{ url_linktext }}</a>
+    </p>
+
+    <h4>TAGS:</h4>
+    {% for tag in tags %}  
+      <div class="menu">
+      <a href="/tagview/{{tag.key()}}">{{tag.tag}}</a>
+    {% endfor %}
+
+
+    <a href="/createquestion"><p>Ask Question</p></a>
+    </div>
+    </div>
+
+    <div class="content">
+    {% for question in questions %}  
+    <div class="block">
+      <h3><a href="/view/{{question.key().id()}}">{{question.questionname}}</a></h3>
+      {% if username == question.ownername %}
+          <a href="/editquestion/{{question.key().id()}} "><input type='button' value="Edit"></a>
+
+      {% endif %}
+      <div class="body"> 
+          {{question.content|truncate(500)}}
+      </div>
+      <div>Tags: {{question.tagstr}}</div>
+      <div>Created by {{question.created_time.strftime("%d %b %Y %H:%M:%S EST")}}</div>
+      <div>Last modified by: {{question.modifytimeinEST().strftime("%d %b %Y %H:%M:%S EST")}}</div>
+
+      <div> 
+      </div>
+      <div>by {{question.ownername}} </div>
+    </div>
+    {% endfor %}
+    <div>
+      {% if cursor %}
+         <a href="?cursor={{cursor}}">Next Page</a>
+      {% endif %}
+    </div>
+    </div>
+{% endblock %}

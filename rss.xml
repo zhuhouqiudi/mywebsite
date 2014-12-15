@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<rss version="2.0">
+<channel>
+  <title>QnAPlatform</title>
+  <link>http://myblogsys.appspot.com</link>
+  <description>These are feed of QnAPlatform</description>
+  <title>{{question.questionname}}</title>
+  <description>{{question.content}}</description>
+
+  {% for answer in answers %}
+  <item>
+      <description>{{answer.answercontent}}</description>
+  </item>
+  {% endfor %}
+
+</channel>
+</rss> 

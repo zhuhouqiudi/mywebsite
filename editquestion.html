@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <body>
+    <form action="/editquestion/{{questionkey}}" enctype="multipart/form-data" method="post">
+      <p>Question name:</p>
+      <p><input type="text" name="questionname" value="{{prequestionname}}"></p>
+      
+      
+      <h3>Question:</h3>
+      <p><textarea name="content" rows="20" cols="60">{{precontent}}</textarea></p>
+	    <br>
+
+      <h3>Tag:</h3>
+      <p><textarea name="tagstr" rows="1" cols="60">{{pretagstr}}</textarea></p>
+      <br>
+      
+      <input type="submit" value="Update" style="font-size:20px">
+    </form>
+
+  </body>
+</html>
+{% endautoescape %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <body>
+    <h2>Add Question</h2>
+    <form action="/createquestion" method="post">
+      <h3>Question Title:</h3>
+      <textarea name="questionname" rows="1" cols="60" ></textarea></div>
+      <h3>Question:</h3>
+      <div><textarea name="content" rows="5" cols="60"></textarea></div>
+      <h3>Tags:</h3><textarea name="tags" rows="1" cols="60"></textarea></div>
+      <div><input type="submit" value="Post Your Question"></div>
+    </form>
+  </body>
+</html>
+{% endautoescape %}

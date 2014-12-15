@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <body>
+    <form action="/editanswer/{{answerkey}}" enctype="multipart/form-data" method="post">
+      <p>Question: {{question.questionname}}</p>
+      <br>
+      <p>{{question.content}}</p>
+      
+      
+      <h3>Answer:</h3>
+      <p><textarea name="answercontent" rows="20" cols="100">{{preanswercontent}}</textarea></p>
+	    <br>
+      
+      <input type="submit" value="Update" style="font-size:20px">
+    </form>
+
+  </body>
+</html>
+{% endautoescape %}
